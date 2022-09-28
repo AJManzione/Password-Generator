@@ -11,31 +11,45 @@ document.querySelector('#generate').addEventListener('click', promptOne);
 
 function promptOne() {
 
-    var userNumber = prompt("How many characters long do you want your password to be? (Please enter a number between 8 - 128)");
-    
-    if (userNumber >= 8 && userNumber <= 128) { promptTwo(1)}
-      else promptOne(1)
+    var userNumber = prompt("How many characters do you want your password to be? (Please enter a number between 8 - 128)");
+    if (userNumber >= 8 && userNumber <= 128) {
+      promptTwo();
+    } else if (userNumber < 8) {
+      alert("You entered a number lower than 8 \nYou must enter a number between 8 - 128");
+    } else if (userNumber > 128) {
+      alert("You entered a number greater than 128 \nYou must enter a number between 8 - 128");
+    } else {
+      alert("You did not enter any number");
+      promptOne();
+    }
 }
-  
-
 function promptTwo() {
 
-    var userUpperCase = confirm ("Would you like to use uppercase's in your password?"); 
+  var userUpperCase = confirm ("Would you like to include NUMBERS in your password? \n(example: 1, 2, 3, 4, etc...)"); 
 
-    if (userUpperCase = true) // add upper cases to password
-    {promptThree(1)}
-      else promptThree(1)
-}
-
+  if (userUpperCase = true) {
+    promptThree()
+  } else promptThree()
+}  
 
 function promptThree() {
 
-  var userSpecialCharacters = confirm("Would you like special characters to be included in your password? (example: !, @, #, $, etc... ");
+    var userNumbersIncluded = confirm ("Would you like to include UPPERCASE in your password? \n(example: A, B, C, D, etc...)"); 
 
-  if (userSpecialCharacters = true) {// add special characters to password
+    if (userNumbersIncluded = true) {
+      promptFour()
+    } else promptFour()
+}
+
+
+function promptFour() {
+
+  var userSpecialCharacters = confirm("Would you to include SPECIAL CHARACTERS in your password? \n(example: !, @, #, $, etc...)");
+
+  if (userSpecialCharacters = true) {
     alert ("Your password is being generated"); // print password to box}
   }
-      else alert ("Your password is being generated"); // print password to box)
+    else alert ("Your password is being generated"); // print password to box)
 
 }
     
