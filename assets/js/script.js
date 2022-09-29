@@ -6,9 +6,11 @@ var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numbers = "0123456789";
 var specialCharacters = "!@#$%^&*()_+~`|}{[]\:;?><,./-=";
 var selection = "";
-// User input defaults to only call the functions if case changes
 
-var passwordGenerated = [];
+
+//global variables set to no unless user specifies otherwise
+
+var passwordGenerated = '';
 var passwordSize = 0;
 var lowerCaseIncluded = false; 
 var upperCaseIncluded = false;
@@ -22,7 +24,7 @@ document.querySelector('#generate').addEventListener('click', promptPassword);
 
 
 
-
+// prompts that change global variables to True dependant on user behavior. 
 
 function promptPassword() {
 
@@ -94,46 +96,37 @@ function promptFour() {
 
 function createRandomPassword() {
 
-  console.log(passwordSize);
-  console.log(lowerCaseIncluded);
-  console.log(upperCaseIncluded);
-  console.log(numbersIncluded);
-  console.log(specialCharactersIncluded);
-
-
 
    if (lowerCaseIncluded === true) {
-    selection = selection + lowerCase;
+   selection = selection.concat(lowerCase);
    }
 
    if (upperCaseIncluded === true) {
-    selection = selection + upperCase;
+    selection = selection.concat(upperCase);
    }
 
    if (numbersIncluded === true) {
-    selection = selection + specialCharacters;
+    selection = selection.concat(specialCharacters);
    }
 
    if (specialCharactersIncluded === true) {
-    selection = selection + specialCharacters;
+    selection = selection.concat(specialCharacters);
    }
+ 
+   for (var i=0; i < passwordSize; i++) {
+		var randomNum = Math.floor(Math.random() * selection.length);
+		passwordGenerated = selection.substring(randomNum,randomNum+1);
 
-   
-   
+      console.log(passwordGenerated);
+ }
+
+ return passwordGenerated;  //changes the global value set to nothing and inserts it with the users randomly generated password
+
 }
 
 
 
 
-// for loop for randomizing based on the password size
-
-
-
-/*console.log(passwordSize);
-  console.log(upperCase);
-  console.log(upperCase);
-  console.log(numberIncluded);
-  console.log(specialCharacters);*/
 
 
 
@@ -141,19 +134,13 @@ function createRandomPassword() {
 
 
 
-
-
-
-/* // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
- */
-
-
-
+ 
+}
 
 
 
