@@ -1,93 +1,157 @@
-// Assignment code here
+
+//Arrays to be picked from randomly
+
 var lowerCase = "abcdefghijklmnopqrstuvwxyz";
-var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numbers = "0123456789";
 var specialCharacters = "!@#$%^&*()_+~`|}{[]\:;?><,./-=";
+var selection = "";
+// User input defaults to only call the functions if case changes
 
-// Get references to the #generate element
+var passwordGenerated = [];
+var passwordSize = 0;
+var lowerCaseIncluded = false; 
+var upperCaseIncluded = false;
+var numbersIncluded = false;
+var specialCharactersIncluded = false;
 
-document.querySelector('#generate').addEventListener('click', promptOne);
+
+
+document.querySelector('#generate').addEventListener('click', promptPassword);
+
+
+
+
+
+
+function promptPassword() {
+
+    var userInput = prompt("How many characters do you want your password to be? (Please enter a number between 8 - 128)");
+    if (userInput >= 8 && userInput <= 128) {
+      passwordSize = userInput; //assigns the global variable to the user input
+      promptOne();
+    } else if (userInput < 8) {
+      alert("You entered a number lower than 8 \nYou must enter a number between 8 - 128");
+    } else if (userInput > 128) {
+      alert("You entered a number greater than 128 \nYou must enter a number between 8 - 128");
+    } else {
+      alert("You did not enter any number");
+      promptPassword();
+    }
+}
 
 
 function promptOne() {
 
-    var userNumber = prompt("How many characters do you want your password to be? (Please enter a number between 8 - 128)");
-    if (userNumber >= 8 && userNumber <= 128) {
-      promptTwo();
-    } else if (userNumber < 8) {
-      alert("You entered a number lower than 8 \nYou must enter a number between 8 - 128");
-    } else if (userNumber > 128) {
-      alert("You entered a number greater than 128 \nYou must enter a number between 8 - 128");
-    } else {
-      alert("You did not enter any number");
-      promptOne();
-    }
+  var userLowerCase = confirm ("Would you like to include lowercase in your password? \n(example: a, b, c, d, etc...)"); 
+
+ if (userLowerCase == true) {
+  lowerCaseIncluded = userLowerCase; //asigns the global variable to the user input
+  promptTwo();
+  } else promptTwo();
 }
+
 function promptTwo() {
 
-  var userUpperCase = confirm ("Would you like to include NUMBERS in your password? \n(example: 1, 2, 3, 4, etc...)"); 
+  var userUpperCase = confirm ("Would you like to include UPPERCASE in your password? \n(example: A, B, C, D, etc...)"); 
 
-  if (userUpperCase = true) {
-    promptThree()
-  } else promptThree()
+  if (userUpperCase == true) {
+  upperCaseIncluded = userUpperCase; // assigns the global variable to the user input
+  promptThree();
+  } else promptThree();
 }  
+
+
+
 
 function promptThree() {
 
-    var userNumbersIncluded = confirm ("Would you like to include UPPERCASE in your password? \n(example: A, B, C, D, etc...)"); 
+  var userNumbers = confirm ("Would you like to include NUMBERS in your password? \n(example: 1, 2, 3, 4, etc...)"); 
 
-    if (userNumbersIncluded = true) {
-      promptFour()
-    } else promptFour()
+ if (userNumbers == true) {
+  numbersIncluded = userNumbers; //asigns the global variable to the user input
+  promptFour();
+  } else promptFour();
 }
+
 
 
 function promptFour() {
 
-  var userSpecialCharacters = confirm("Would you to include SPECIAL CHARACTERS in your password? \n(example: !, @, #, $, etc...)");
+    var userSpecialCharacters = confirm("Would you to include SPECIAL CHARACTERS in your password? \n(example: !, @, #, $, etc...)");
 
-  if (userSpecialCharacters = true) {
+    if (userSpecialCharacters == true) {
+    specialCharactersIncluded = userSpecialCharacters;
+    createRandomPassword();
     alert ("Your password is being generated"); // print password to box}
-  }
-    else alert ("Your password is being generated"); // print password to box)
+    } else { alert("Your password is being generated");
+    createRandomPassword();
+    }
+
 
 }
-    
+ 
+
+function createRandomPassword() {
+
+  console.log(passwordSize);
+  console.log(lowerCaseIncluded);
+  console.log(upperCaseIncluded);
+  console.log(numbersIncluded);
+  console.log(specialCharactersIncluded);
 
 
 
-/* 
-    var userUpperCase = confirm ("Would you like to use uppercase's in your password?"); 
-    var userSpecialCharacters = confirm("Would you like special characters to be included in your password? (example: !, @, #, $, etc... ")
-    
+   if (lowerCaseIncluded === true) {
+    selection = selection + lowerCase;
+   }
+
+   if (upperCaseIncluded === true) {
+    selection = selection + upperCase;
+   }
+
+   if (numbersIncluded === true) {
+    selection = selection + specialCharacters;
+   }
+
+   if (specialCharactersIncluded === true) {
+    selection = selection + specialCharacters;
+   }
+
+   
+   
+}
+
+
+
+
+// for loop for randomizing based on the password size
+
+
+
+/*console.log(passwordSize);
+  console.log(upperCase);
+  console.log(upperCase);
+  console.log(numberIncluded);
+  console.log(specialCharacters);*/
 
 
 
 
 
 
-  
-
-
-
- */
 
 
 
 
-
-
-
-// Write password to the #password input
+/* // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+ */
 
-}
-
-// Add event listener to generate button
 
 
 
@@ -97,18 +161,8 @@ function writePassword() {
      
     
     
-/*     function validNumber (x);
-        if (x > 8 || x < 128) {
-          confirm ("Would you like to use uppercase's in your password?"); }
 
 
-    confirm ("Would you like to use special characters in your password? (example: !@#$ etc..)");
-
- */
-/*     if (confirm("Shall I print Hello World?")) {
-      document.write("Hello World");
-  } else {
-      document.write("OK, I won't print it.");
-  } */
+ 
 
 
