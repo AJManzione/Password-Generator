@@ -99,7 +99,7 @@ function promptFour() {
     if (userSpecialCharacters == true) {
     specialCharactersIncluded = userSpecialCharacters;
     createRandomPassword();
-    } else { alert("Your password is being generated");
+    } else { alert("Your password is being generated...");
     createRandomPassword(); // function gets called that checks conditional statements below 
     }
 }
@@ -127,6 +127,8 @@ function createRandomPassword() {
     selection = selection + specialCharacters;
    }
 
+   else (alert("You did not make any selections... \n please select at least one criteria"));
+   
 /* still within the function but after the conditionals, the for loop adds a random character(num, upper, lower, symbol) to the variable called generatedPassword by using the .push method.. essentionally the variable "selection(containing user criteria)"" is being called at an array position by a random num "randomNum" the elements of the array gets randomly called and pushed to the variable "passwordGenerated" one character at a time and includes commas. */
 
   
