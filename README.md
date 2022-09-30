@@ -3,40 +3,74 @@
 ## Randomly generates a password depending on what options you choose!
 
 
-- The motivation for this project was to deploy an application that randomly generated a password for the user and to give them the option of using Uppercase, lowercase,.
-- I built this project to allow anyone of interest to see my current up to date portfolio and to acts as a portfolio element in itself to display my knowledge of web development.
-- It solves the problem of being potentially unidentifyable within the web development industry and allows for people of interest to have the freedom to discover who I am as a developer and to learn more about me.
-- I learned how to create a website.
+- The motivation for this project was to deploy an application that randomly generated a password for the user depending on the choices they made. The user has the options to include using Uppercase, lowercase, Numbers, and Special characters in their password and is limited to at least one selection.
+- The project was built to test my understanding of JavaScript using functions, if, else, for, and methods found in JavaScript. It was built to serve as a functional application that can be used in real world scenarios.
+- The Application solves the problems of creating a predictable password and gives the user the choices rather than just being at the will of an automatic random password generator. In my application, the user has the choice for the character type and length of their randomly generated password.
+- This application build helped build on my understanding of JavaScript.
 
 
-## Layout of the website
-![Alt Text](/assets/images/1.png)
-![Alt Text](/assets/images/2.png)
-![Alt Text](/assets/images/3.png)
 
-## Responsive at different screen widths 
+ ![Alt Text](/assets/images/button.png)
 
-   The challenge of this project was getting the website to function properly and display cleanly all of the content inside while being at any screen size. I know that not all webasites are going to be viewed at full size and sometimes websites will be viewed on mobile, for this we used several advanced CSS features to solve the problem.
+## Linking the button -----
 
-## Example of mobile screen width
+- Ultimately the most important button on the entire page was the one that initialized the code and allowed the user to create the password, I found the best way to do this was by first navigating to the HTML and creating an ID associated with the button. The code looks like this:
 
-![Alt Text](/assets/images/4.png)
+```
+<button id="generate" class="btn">Generate Password</button>
+```
 
-## Credits
+- Next was calling the ID in JavaScript and adding the event listener, this means that when the button is 'clicked' the 'input prompt' will be displayed. this is what prompts the user to input the size that they want their password to be. The code looks like this:
 
-   CSS Reset - http://meyerweb.com/eric/tools/css/reset/ 
+```
+document.querySelector('#generate').addEventListener('click', inputPrompt);       
+```
+
+![Alt Text](/assets/images/password_Size.png)
+
+
+## Conditionals, Prompts, and Functions
+
+  - When the initial prompt is displayed, the code is not guarenteed to run, just yet. There still is the condition that the user inputs a number outside of the required length. Standards for password sizes suggest that a user must have a password of at least 8 but no more than 128 characters. If the user enters a value outside of the parameters they are sent an alert, and have to re-initiate the button.
+
+![Alt Text](/assets/images/lower.png)
+
+- Of course a similar alert is given if the user exceeds 128.
+
+![Alt Text](/assets/images/gt.png)
+
+- After the user enters a valid number, then its off to the races. well, almost! At this point the user gets prompted one by one if they would like to include specific characters in their password **BUT** the user can't say no to all of the conditions or no password will be created. They are then alerted like this.
+
+![Alt Text](/assets/images/selection_error.png)
+
+##Enough Already!
+
+- Okay, now that we've covered all of the cases that the code **should not run** lets go through some of the criteria the user can pick. The user is prompted to either "cancel" or "okay" on a handful of criteria that specify what characters that they want their randomly generated password to contain. When the user selects "cancel" they mean no do not include, and vice, versa!
+
+![Alt Text](/assets/images/lower_case.png)
+![Alt Text](/assets/images/Upper.png)
+![Alt Text](/assets/images/Screen%20Shot%202022-09-29%20at%209.35.46%20PM.png)
+![Alt Text](/assets/images/special_case.png)
+
+## Changing Global Variables depending on user choice!
+
+- During thses prompt the code is doing some interesting things. We've assigned some empty variables and some variables with the value of **false** meaning that if they do not add 'lower case' (as an example)into their generated password than the variable 'lowerCase' remains false and nothing changes. On the other hand if they select **true** than the global variable changes and is added to the selection of characters that can be chosen from.
+
+- Without getting too deep into how a random value is chosen, here is the code snippit showing how the work is done. (There could be a whole seperate **README** on this for loop alone) This was definitely the crux of this project and lets just say, it involved some methods found in JavaScript native including .floor .random .math .push and .join
  
-   Photo by Hasan Albari: https://www.pexels.com/photo/silver-and-black-laptop-computer-1229861/
+ You can find a link of some methods relating to arrays that I found to be useful - [here](https://www.w3schools.com/jsref/jsref_obj_array.asp)
+ 
+ The **for loop** as spoken about can be found in the following snippit.
 
-   Photo by Pixabay: https://www.pexels.com/photo/turned-on-computer-monitor-displaying-text-270360/
+ ```
+ for (var i=0; i < passwordSize; i++) {
+		var randomNum = Math.floor(Math.random() * selection.length);
+    passwordGenerated.push(selection[randomNum]);
+    passwordPrint = passwordGenerated.join("");
+    }
+ ```
+![Alt Text](/assets/images/password.png)
 
-   Photo by Pixabay: https://www.pexels.com/photo/abstract-business-code-coder-270348/
-   
-   Photo by Sergey Zolkin: https://unsplash.com/@szolkin?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText/
-
-   Photo by Hal Gatewood: https://unsplash.com/@halacious?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText/
-
-   Photo by Jaime Lopes: https://unsplash.com/@jaimelopes?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText/
 
 ## License
 
@@ -46,6 +80,7 @@
 
 * HTML
 * CSS
+* JavaScript
 * Git & GitHub
 
 
@@ -55,7 +90,7 @@
 Anthony Manzione - [@Instagram Handle](https://www.instagram.com/anthony.manzione/) - 
 [@Linkedin](https://www.linkedin.com/in/anthony-manzione-862b44250/)
 
-Project Link: [https://github.com/AJManzione/Anthony-Manzione-Portfolio](https://ajmanzione.github.io/Anthony-Manzione-Portfolio/)
+Project Link: [https://github.com/AJManzione/Password-Generator]
 
 
 
